@@ -3,11 +3,9 @@
 def call() {
     echo 'jenkins-shared-library: building the Docker Image'
 
-    node {
-        // Zeigt alle aktuellen Verzeichnisse im PATH an
-        sh 'echo "Aktueller PATH ist: $PATH"'
-        
-        // Sucht den absoluten Pfad zur Docker-Executable
-        sh 'which docker || echo "Docker wurde im PATH nicht gefunden"'
+    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+        sh 'docker build -t tomkley/demo-app:jma-2.1 .'
+        sh 'echo $PASS | docker login -u $USER --password-stdin'
+        sh 'docker push tomkley/demo-app:jma-2.1'
     }
 }
