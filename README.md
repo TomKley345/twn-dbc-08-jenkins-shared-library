@@ -7,9 +7,9 @@ Jenkins Shared Library
 Functions that we can call from Jenkinsfile
 Ech functioin/execution step is a separate Groovy File
 
-### /src/
+### /src/ (optional)
 Helper code
 
-### /resources/
+### /resources/ (optional)
 external libraries
 non-groovy files
